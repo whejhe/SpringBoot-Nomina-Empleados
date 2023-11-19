@@ -1,0 +1,90 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header{
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(41, 51, 42, 20);
+}
+/*añadir transparencia a la barra de navegación*/
+nav{
+    padding: 0.5em;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    background-color: rgba(41, 51, 42, 0.5);
+    position:sticky;
+    top: 0;
+}
+nav ul{
+    display: flex;
+    list-style: none;
+    margin: 1em;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+nav ul li{
+    margin-right: 1em;
+    font-size: x-large;
+    font-weight: bold;
+}
+nav a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+nav a:hover{
+    text-decoration: underline;
+    color: rgb(161, 161, 161);
+}
+nav a:focus{
+    color: #250;
+}
+
+.logo{
+    width: auto;
+    height: 5em;
+    margin-left: 1em;
+    margin-top: -4.5em;
+    float: left;
+    align-items: center;
+    justify-content: left;
+}
+
+h1{
+    text-align: center;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.footer{
+    text-align: center;
+    margin: 0;
+    padding: 0 2em 2em 0;
+    border-top: 1px solid #ccc;
+    font-size: 14px;
+    color: #777;
+    background-color: rgba(41, 51, 42, 20);
+    position: fixed;
+    height: 5em;
+    bottom: 0;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer a{
+    text-decoration: underline;
+    color: whitesmoke;
+}
+.footer a:hover{
+    color: rgb(161, 161, 161);
+}

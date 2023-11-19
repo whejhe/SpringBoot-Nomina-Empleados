@@ -1,0 +1,17 @@
+https://start.spring.io/
+
+1-Configurar la base de datos en application.properties
+
+# Configuración de la base de datos
+spring.datasource.url=jdbc:mariadb://localhost:3306/Empresa
+spring.datasource.username=root
+spring.datasource.password=123456
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+
+# Configuración JPA
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update
+
+Lanzar aplicacion:
+mvn spring-boot:run
+http://localhost:8080

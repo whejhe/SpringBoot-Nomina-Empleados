@@ -1,0 +1,35 @@
+UD6-NominasEmpleados
+    |
+    |-- src.main.java.com.sotero.Empresa
+    |   |
+    |   |-- Empleado/
+    |   |   |-- EmpleadoModel.java
+    |   |   |-- EmpleadoController.java
+    |	|   |--	EmpleadoRepository.java
+    |	|   |--	EmpleadoService.java
+    |   |-- Nomina/
+    |   |   |-- NominaModel.java
+    |   |   |-- NominaController.java
+    |   |-- |-- NominaRepository.java
+    |	|-- |-- NominaService.java
+    |   |-- NominasEmpleadosApplication.java
+    |-- resources/
+    |   |-- static/
+    |	|	|-- css/
+    |	|	|	|-- estilos.css
+    |   |-- templates/
+    |	|	|-- fragments/
+    |	|	|	|-- header.html
+    |	|	|	|-- footer.html
+    |	|	|-- empleados/
+    |	|	|	|-- listaEmpleados.html
+    |	|	|	|-- ModificarEmpleado.html
+    |	|	|	|-- AgregarEmpleado.html
+    |	|	|	|-- EliminarEmpleado.html
+    |	|	|-- nominas/
+    |	|	|	|-- lista.html
+    |   |-- application.properties
+    |-- target
+    |-- mvnw
+    |-- mvnw.cmd
+    |-- pom.xml

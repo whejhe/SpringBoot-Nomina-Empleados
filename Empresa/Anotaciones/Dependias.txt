@@ -1,0 +1,6 @@
+mariadb			(para bbdd)
+Thymeleaf		(Motor de plantillas en html)
+Spring Web		(Manejo de solicitudes HTTP)
+Spring Data JPA		(Simplifica el acceso a bases de datos relacionales en aplicaciones Java)
+Lombok			(Ayuda a reducir la verbosidad en el codigo eliminando la necesidad de escribir ciertos metodos como getters, setters, constructores...)
+Spring Boot DevTools	(Herramientas para la recarga automatica de la aplicacion)	

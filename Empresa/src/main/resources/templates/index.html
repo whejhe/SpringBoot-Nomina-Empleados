@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Empresa de Diseño Web</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}" />
+    <link rel="stylesheet" th:href="@{/css/Inicio.css}" />
+</head>
+
+<body>
+		<div th:replace="fragments/header :: header"></div>
+	<span class="fondo"></span>
+    <div class="container">
+        <img th:src="@{/images/mapa.jpg}" alt="" class="img-r" />
+        <h1>CFG nace en el año 2012 con la clara idea de ofrecer nuestro conocimiento técnico, ingenio y
+            creatividad, aportando sensibilidad a nuestro trabajo para satisfacer las necesidades de cada Proyecto.
+        </h1>
+        <cite>El trabajo desarrollado durante éstos años, nos ha aportado los valores de flexibilidad y profesionalidad
+            necesarios que se requieren para crecer en un sector tan exigente como éste.</cite>
+    </div>
+	<span class="espacio"></span>
+    <div class="container">
+        <img th:src="@{/images/fondo.png}" alt="" class="img-l" />
+        <h1>CFG nace en el año 2012 con la clara idea de ofrecer nuestro conocimiento técnico, ingenio y
+            creatividad, aportando sensibilidad a nuestro trabajo para satisfacer las necesidades de cada Proyecto.
+        </h1>
+        <cite>El trabajo desarrollado durante éstos años, nos ha aportado los valores de flexibilidad y profesionalidad
+            necesarios que se requieren para crecer en un sector tan exigente como éste.</cite>
+    </div>
+    <span class="espacio"></span>
+
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>

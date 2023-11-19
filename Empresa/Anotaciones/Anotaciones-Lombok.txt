@@ -1,0 +1,72 @@
+Lombok es una biblioteca que ayuda a reducir la verbosidad del código en Java mediante 
+la generación automática de métodos como getters, setters, constructores, `toString`, y otros. 
+Aquí tienes algunas de las anotaciones más importantes de Lombok junto con una breve 
+descripción:
+
+1. **@Data:**
+   - **Descripción:** Esta anotación combina varias anotaciones como `@ToString`, 
+   `@EqualsAndHashCode`, `@Getter`, `@Setter`, y `@RequiredArgsConstructor`. 
+   Se utiliza para las clases de modelo para generar automáticamente métodos comunes como 
+   `toString`, `equals`, `hashCode`, y los métodos getters y setters.
+
+   ```java
+   @Data
+   public class Ejemplo {
+       private String campo1;
+       private int campo2;
+   }
+   ```
+
+
+2. **@Getter / @Setter:**
+   - **Descripción:** Estas anotaciones generan automáticamente métodos getters o setters 
+   para los campos de la clase, respectivamente.
+
+   ```java
+   @Getter
+   @Setter
+   public class Ejemplo {
+       private String campo;
+   }
+   ```
+
+3. **@NoArgsConstructor / @AllArgsConstructor / @RequiredArgsConstructor:**
+   - **Descripción:**
+     - `@NoArgsConstructor`: Genera un constructor sin argumentos.
+     - `@AllArgsConstructor`: Genera un constructor con todos los argumentos.
+     - `@RequiredArgsConstructor`: Genera un constructor con los campos marcados como `final` 
+     y aquellos que están anotados con `@NonNull`.
+
+   ```java
+   @NoArgsConstructor
+   @AllArgsConstructor
+   public class Ejemplo {
+       private String campo1;
+       private int campo2;
+   }
+   ```
+
+4. **@ToString:**
+   - **Descripción:** Genera automáticamente el método `toString` para la clase, lo que 
+   facilita la representación de la instancia en forma de cadena.
+
+   ```java
+   @ToString
+   public class Ejemplo {
+       private String campo1;
+       private int campo2;
+   }
+   ```
+
+5. **@EqualsAndHashCode:**
+   - **Descripción:** Genera automáticamente los métodos `equals` y `hashCode` 
+   basándose en los campos de la clase.
+
+   ```java
+   @EqualsAndHashCode
+   public class Ejemplo {
+       private String campo1;
+       private int campo2;
+   }
+   ``
+

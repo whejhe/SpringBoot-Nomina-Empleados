@@ -1,0 +1,37 @@
+
+.container {
+    margin-top: 2em;
+    text-align: center;
+    padding:0;
+    border-top: 1px solid #ccc;
+    font-size: 14px;
+    color: #222222;
+    background-color: #99d4a5;
+    height: 25em;
+}
+
+.container h1, .container cite {
+    text-align: center;
+    padding: 3em 1em 0 1em;
+    margin: 0;
+    
+}
+
+.img-r{
+    width: auto;
+    height: 25em;
+    float: right;
+    margin-left: 2em;
+}
+
+.img-l{
+    width: auto;
+    height: 25em;
+    float: left;
+    margin-right: 2em;
+}
+
+.espacio{
+	display: block;
+	height: 120px;
+}
