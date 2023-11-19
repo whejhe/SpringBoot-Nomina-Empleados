@@ -8,7 +8,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/empleados")
-public class EmpleadoController {//Modifica lo necesario para las nuevas implementaciones
+public class EmpleadoController {// Modifica lo necesario para las nuevas implementaciones
 
     private final EmpleadoService empleadoService;
 
@@ -48,7 +48,6 @@ public class EmpleadoController {//Modifica lo necesario para las nuevas impleme
             return "empleados/formulario";
         }
     }
-
 
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable int id, Model model) {
