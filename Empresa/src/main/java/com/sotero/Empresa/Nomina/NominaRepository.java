@@ -12,6 +12,8 @@ public interface NominaRepository extends JpaRepository<NominaModel, Integer> {
     Optional<NominaModel> findById(Integer id);
 
     List<NominaModel> findAll();
+    
+    NominaModel findBySueldo(int sueldo);
 
     void deleteById(Integer id);
 

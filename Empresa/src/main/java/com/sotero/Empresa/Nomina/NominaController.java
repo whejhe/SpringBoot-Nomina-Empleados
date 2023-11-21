@@ -24,16 +24,4 @@ public class NominaController {
         return "nominas/lista";
     }
 
-    @GetMapping("/generar-reporte")
-    public String generarReporte(Model model) {
-        String reporte = nominaService.generarReporteNominas();
-        model.addAttribute("reporte", reporte);
-        return "nominas/reporte";
-    }
-
-    @GetMapping("/procesar-automaticamente")
-    public String procesarAutomaticamente() {
-        nominaService.procesarNominasAutomaticamente();
-        return "redirect:/nominas";
-    }
 }

@@ -9,22 +9,9 @@ import org.springframework.stereotype.Service;
 public class EmpleadoService {
 
     private final EmpleadoRepository empleadoRepository;
-    private static final int SUELDO_BASE[] = { 50000, 70000, 90000, 110000, 130000, 150000, 170000, 190000, 210000,
-            230000 };
 
     public EmpleadoService(EmpleadoRepository empleadoRepository) {
         this.empleadoRepository = empleadoRepository;
-    }
-
-    public int calcularSueldo(int categoria, int anyos) {
-        if (categoria < 1 || categoria > SUELDO_BASE.length) {
-            throw new IllegalArgumentException("Categoría de empleado no válida: " + categoria);
-        }
-
-        int sueldoBase = SUELDO_BASE[categoria - 1];
-        int sueldo = sueldoBase + 5000 * anyos;
-
-        return sueldo;
     }
 
     public void guardarEmpleado(EmpleadoModel empleado) {

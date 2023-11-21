@@ -1,6 +1,6 @@
 
 .container {
-    max-width: 800px;
+    max-width: 75%;
     margin: 20px auto;
     background-color: #fff;
     padding: 20px;
@@ -26,7 +26,8 @@ button {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 2em;
+    margin-bottom: 8em;
 }
 
 th, td {

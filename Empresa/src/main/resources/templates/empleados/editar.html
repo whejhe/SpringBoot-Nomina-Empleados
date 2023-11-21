@@ -55,13 +55,13 @@
                     <td th:text="${empleado.anyosTrabajados}"></td>
                     <td th:text="${empleado.sueldo}"></td>
                     <td>
-		                <form method="get" action="/editar">
+		                <form method="get" action="/editar/{id}">
 		                    <input type="hidden" name="empleadoId" th:value="${empleado.id}" />
 		                    <button type="submit">Editar</button>
 		                </form>
 		            </td>
 		            <td>
-		                <form method="get" action="/editar">
+		                <form method="get" action="/deleteById">
 		                    <input type="hidden" name="empleadoId" th:value="${empleado.id}" />
 		                    <button type="submit">Eliminar</button>
 		                </form>

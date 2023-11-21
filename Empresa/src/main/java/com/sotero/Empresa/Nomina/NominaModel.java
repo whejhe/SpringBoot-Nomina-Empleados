@@ -1,5 +1,6 @@
 package com.sotero.Empresa.Nomina;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,9 +13,15 @@ public class NominaModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idNomina;
 
+	@Nonnull
 	private int sueldo;
 
-	public NominaModel(int salario) {
+	public NominaModel() {
+		
+	}
+	
+	public NominaModel(int sueldo) {
+		this.sueldo = sueldo;
 	}
 
 	public int getIdNomina() {

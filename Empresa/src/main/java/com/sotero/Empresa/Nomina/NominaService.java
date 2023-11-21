@@ -23,7 +23,8 @@ public class NominaService {
         this.empleadoService = empleadoService;
 		this.empleadoModel = new EmpleadoModel();
     }
-
+    
+    
     public String generarReporteNominas() {
         List<NominaModel> nominas = nominaRepository.findAll();
 
@@ -35,21 +36,11 @@ public class NominaService {
         return reporte.toString();
     }
 
-    public void procesarNominasAutomaticamente() {
-        List<EmpleadoModel> empleados = empleadoRepository.findAll();
-
-        for (EmpleadoModel empleado : empleados) {
-        	int categoria = empleadoModel.getCategoria();
-        	int anyos = empleadoModel.getAnyosTrabajados();
-            int salario = empleadoService.calcularSueldo(categoria, anyos);
-            NominaModel nomina = new NominaModel(salario);
-
-            nominaRepository.save(nomina);
-        }
-    }
 
     public List<NominaModel> obtenerTodas() {
-        return nominaRepository.findAll();
+    	List<NominaModel> nominas = nominaRepository.findAll();
+        System.out.println("Nominas encontradas: " + nominas);
+        return nominas;
     }
 
 }
