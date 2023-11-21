@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/estilos.css}" />
-    <link rel="stylesheet" th:href="@{/css/listaEmpleados.css}" />
+    <link rel="stylesheet" th:href="@{/css/tablas.css}" />
     <title>Lista de Empleados</title>
-    
-
 </head>
 
 <body>
@@ -17,9 +15,8 @@
 
     <div class="container">
         <h2>Lista de Empleados</h2>
-
         <form method="get" action="/empleados">
-		    <input type="text" name="search" placeholder="Buscar por nombre, DNI, categoría, etc." />
+		    <input type="text" name="search" placeholder="Buscar por campos" />
 		    
 		    <select name="filterBy" th:value="${filterBy}">
 		        <option value="nombre">Nombre</option>

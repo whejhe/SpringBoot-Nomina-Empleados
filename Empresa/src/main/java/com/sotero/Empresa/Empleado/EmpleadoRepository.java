@@ -19,15 +19,12 @@ public interface EmpleadoRepository extends JpaRepository<EmpleadoModel, Integer
 
     EmpleadoModel findByDni(String dni);
 
-    EmpleadoModel findBySexo(String sexo);
+    List<EmpleadoModel> findBySexo(String sexo);
 
     List<EmpleadoModel> findByCategoria(int categoria);
 
     List<EmpleadoModel> findByAnyosTrabajados(int anyosTrabajados);
 
     void deleteById(Integer id);
-
-    List<EmpleadoModel> findByNombreContainingOrDniContainingOrSexoContainingOrCategoriaContainingOrAnyosTrabajadosContaining(
-            String nombre, String dni, String sexo, String categoria, String anyosTrabajados);
 
 }

@@ -1,5 +1,6 @@
 package com.sotero.Empresa.Empleado;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -54,41 +55,37 @@ public class EmpleadoService {
         empleadoRepository.deleteById(id);
     }
 
-    public List<EmpleadoModel> buscarPorCualquierCampo(String search) {
-        List<EmpleadoModel> empleados = empleadoRepository
-                .findByNombreContainingOrDniContainingOrSexoContainingOrCategoriaContainingOrAnyosTrabajadosContaining(
-                        search, search, search, search, search);
-        System.out.println("Empleados encontrados: " + empleados);
-        return empleados;
-    }
 
-    public EmpleadoModel buscarPorCampo(String search, String filterBy) {
+    public List<EmpleadoModel> buscarPorCampo(String search, String filterBy) {
+        if (search == null || search.isEmpty()) {
+            throw new IllegalArgumentException("El parámetro de búsqueda no puede ser nulo o vacío");
+        }
+
         switch (filterBy) {
             case "nombre":
-                return empleadoRepository.findByNombre(search);
+                return Collections.singletonList(empleadoRepository.findByNombre(search));
             case "dni":
-                return empleadoRepository.findByDni(search);
+                return Collections.singletonList(empleadoRepository.findByDni(search));
             case "sexo":
-                return empleadoRepository.findBySexo(search);
+            	return empleadoRepository.findBySexo(search);
             case "categoria":
                 try {
                     int categoria = Integer.parseInt(search);
-                    List<EmpleadoModel> empleados = empleadoRepository.findByCategoria(categoria);
-                    return empleados.isEmpty() ? null : empleados.get(0);
+                    return empleadoRepository.findByCategoria(categoria);
                 } catch (NumberFormatException e) {
-                    return null;
+                    throw new IllegalArgumentException("La categoría no es un número válido");
                 }
             case "anyosTrabajados":
                 try {
                     int anyosTrabajados = Integer.parseInt(search);
-                    List<EmpleadoModel> empleados = empleadoRepository.findByAnyosTrabajados(anyosTrabajados);
-                    return empleados.isEmpty() ? null : empleados.get(0);
+                    return empleadoRepository.findByAnyosTrabajados(anyosTrabajados);
                 } catch (NumberFormatException e) {
-                    return null;
+                    throw new IllegalArgumentException("Años trabajados no es un número válido");
                 }
             default:
-                return null;
+                return Collections.emptyList();
         }
     }
+
 
 }
