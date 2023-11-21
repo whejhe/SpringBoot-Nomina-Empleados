@@ -1,5 +1,6 @@
 package com.sotero.Empresa.Empleado;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +12,9 @@ public class EmpleadoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Nonnull
     private String nombre;
+    @Nonnull
     private String dni;
     private String sexo;
     private int categoria;
