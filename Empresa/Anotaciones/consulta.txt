@@ -1,0 +1,56 @@
+EmpleadoRepository
+void editarById(Integer id, EmpleadoModel empleado);
+
+
+EmpleadoService
+ public void editarEmpleado(EmpleadoModel empleado) {
+        // añade logica para editar el empleado
+        empleado.setNombre("Updated Name");
+        empleado.setDni("Updated DNI");
+        empleado.setSexo("Updated sexo");
+        empleado.setCategoria(0);
+        empleado.setAnyosTrabajados(0);
+        empleadoRepository.save(empleado);
+
+    }
+
+
+EmpleadoModel
+public EmpleadoModel(String dni, String sexo, int categoria, int anyosTrabajados, int sueldo) {
+        this.dni = dni;
+        this.sexo = sexo;
+        this.categoria = categoria;
+        if (this.categoria <= 0) {
+            categoria = 1;
+            this.categoria = categoria;
+        }
+        this.anyosTrabajados = anyosTrabajados;
+        if (this.anyosTrabajados < 0) {
+            anyosTrabajados = 0;
+            this.anyosTrabajados = anyosTrabajados;
+        }
+        this.sueldo = getCalcularSueldo(categoria, anyosTrabajados);
+    }
+
+
+EmpleadoController
+@GetMapping("/editarById/{id}")
+    public String mostrarFormularioEditar(@PathVariable int id, Model model) {
+        EmpleadoModel empleado = empleadoService.obtenerPorId(id);
+        model.addAttribute("empleado", empleado);
+        return "empleados/agregarEmpleado";
+    }
+
+    @PostMapping("/editarById/{id}")
+    public String editarEmpleado(@PathVariable int id, @ModelAttribute EmpleadoModel empleado) {
+        empleado.setId(id);
+        empleadoService.guardarEmpleado(empleado);
+        return "redirect:/empleados";
+    }
+
+
+listaEmpleado.html
+<form method="get" action="/editar">
+		                    <input type="hidden" name="empleadoId" th:value="${empleado.id}" />
+                            <button type="button" onclick="window.location.href='/empleados/editarEmpleado'">Editar</button>
+		                </form>

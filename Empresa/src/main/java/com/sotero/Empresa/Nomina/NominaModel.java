@@ -1,10 +1,14 @@
 package com.sotero.Empresa.Nomina;
 
+import com.sotero.Empresa.Empleado.EmpleadoModel;
+
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class NominaModel {
@@ -13,15 +17,12 @@ public class NominaModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idNomina;
 
-	@Nonnull
-	private int sueldo;
-
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private EmpleadoModel empleado;
+	
 	public NominaModel() {
 		
-	}
-	
-	public NominaModel(int sueldo) {
-		this.sueldo = sueldo;
 	}
 
 	public int getIdNomina() {
@@ -30,14 +31,6 @@ public class NominaModel {
 
 	public void setIdNomina(int idNomina) {
 		this.idNomina = idNomina;
-	}
-
-	public int getSueldo() {
-		return sueldo;
-	}
-
-	public void setSueldo(int sueldo) {
-		this.sueldo = sueldo;
 	}
 
 }

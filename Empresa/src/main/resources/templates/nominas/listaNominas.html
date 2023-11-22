@@ -13,24 +13,7 @@
 
     <div th:replace="fragments/header :: header"></div>
 
-    <div class="container">
-        <h2>Lista de Nominas</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID Nomina</th>
-                    <th>Salario</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="nomina : ${nominas}">
-                    <td th:text="${nomina.idNomina}"></td>
-                    <td th:text="${nomina.sueldo}"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <h1>Lista Nominas</h1>
 
     <div th:replace="fragments/footer :: footer"></div>
 

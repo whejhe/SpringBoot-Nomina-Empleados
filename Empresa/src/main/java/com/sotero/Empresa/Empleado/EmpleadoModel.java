@@ -23,7 +23,25 @@ public class EmpleadoModel {
     private static final int SUELDO_BASE[] = { 50000, 70000, 90000, 110000, 130000, 150000, 170000, 190000, 210000,
             230000 };
 
-    
+    public EmpleadoModel(String dni, String sexo, int categoria, int anyosTrabajados, int sueldo) {
+        this.dni = dni;
+        this.sexo = sexo;
+        this.categoria = categoria;
+        if (this.categoria <= 0) {
+            categoria = 1;
+            this.categoria = categoria;
+        }
+        this.anyosTrabajados = anyosTrabajados;
+        if (this.anyosTrabajados < 0) {
+            anyosTrabajados = 0;
+            this.anyosTrabajados = anyosTrabajados;
+        }
+        this.sueldo = getCalcularSueldo(categoria, anyosTrabajados);
+    }
+
+    public EmpleadoModel() {
+    }
+
     public int getCalcularSueldo(int categoria, int anyos) {
         if (categoria < 1 || categoria > SUELDO_BASE.length) {
             throw new IllegalArgumentException("Categoría de empleado no válida: " + categoria);
@@ -34,17 +52,16 @@ public class EmpleadoModel {
 
         return sueldo;
     }
-    
-    
+
     public int getSueldo() {
-		return sueldo;
-	}
+        return sueldo;
+    }
 
-	public void setSueldo(int sueldo) {
-		this.sueldo = sueldo;
-	}
+    public void setSueldo(int sueldo) {
+        this.sueldo = sueldo;
+    }
 
-	public int getId() {
+    public int getId() {
         return id;
     }
 

@@ -1,10 +1,12 @@
 package com.sotero.Empresa.Nomina;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface NominaRepository extends JpaRepository<NominaModel, Integer> {
 
     NominaModel save(NominaModel nomina);
@@ -12,8 +14,6 @@ public interface NominaRepository extends JpaRepository<NominaModel, Integer> {
     Optional<NominaModel> findById(Integer id);
 
     List<NominaModel> findAll();
-    
-    NominaModel findBySueldo(int sueldo);
 
     void deleteById(Integer id);
 

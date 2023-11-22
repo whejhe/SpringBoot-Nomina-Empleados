@@ -26,14 +26,7 @@ public class NominaService {
     
     
     public String generarReporteNominas() {
-        List<NominaModel> nominas = nominaRepository.findAll();
-
-        StringBuilder reporte = new StringBuilder();
-        for (NominaModel nomina : nominas) {
-            reporte.append("Sueldo: ").append(nomina.getSueldo()).append("\n");
-        }
-
-        return reporte.toString();
+        return null;
     }
 
 

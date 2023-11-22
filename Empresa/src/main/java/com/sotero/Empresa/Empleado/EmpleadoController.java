@@ -8,7 +8,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/empleados")
-public class EmpleadoController {// Modifica lo necesario para las nuevas implementaciones
+public class EmpleadoController {
 
     private final EmpleadoService empleadoService;
 
@@ -32,10 +32,10 @@ public class EmpleadoController {// Modifica lo necesario para las nuevas implem
         return "empleados/listaEmpleados";
     }
 
-    @GetMapping("/crear")
-    public String mostrarFormularioCreacion(Model model) {
+    @GetMapping({ "/agregarEmpleado", "/crear" })
+    public String mostrarFormularioAgregar(Model model) {
         model.addAttribute("empleado", new EmpleadoModel());
-        return "empleados/formulario";
+        return "empleados/agregarEmpleado";
     }
 
     @PostMapping("/crear")
@@ -45,25 +45,25 @@ public class EmpleadoController {// Modifica lo necesario para las nuevas implem
             return "redirect:/empleados";
         } catch (Exception e) {
             model.addAttribute("error", "Error al crear empleado: " + e.getMessage());
-            return "empleados/formulario";
+            return "empleados/agregarEmpleado";
         }
     }
 
-    @GetMapping("/editar/{id}")
-    public String mostrarFormularioEdicion(@PathVariable int id, Model model) {
+    @GetMapping("/editarById/{id}")
+    public String mostrarFormularioEditar(@PathVariable int id, Model model) {
         EmpleadoModel empleado = empleadoService.obtenerPorId(id);
         model.addAttribute("empleado", empleado);
-        return "empleados/formulario";
+        return "empleados/agregarEmpleado";
     }
 
-    @PostMapping("/editar/{id}")
+    @PostMapping("/editarById/{id}")
     public String editarEmpleado(@PathVariable int id, @ModelAttribute EmpleadoModel empleado) {
         empleado.setId(id);
         empleadoService.guardarEmpleado(empleado);
         return "redirect:/empleados";
     }
 
-    @GetMapping("/eliminar/{id}")
+    @DeleteMapping("/deleteById")
     public String eliminarEmpleado(@PathVariable int id) {
         empleadoService.eliminarEmpleado(id);
         return "redirect:/empleados";

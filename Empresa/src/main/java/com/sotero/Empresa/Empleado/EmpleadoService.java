@@ -16,8 +16,20 @@ public class EmpleadoService {
 
     public void guardarEmpleado(EmpleadoModel empleado) {
         validarDni(empleado.getDni());
-
+        empleado.setSueldo(empleado.getCalcularSueldo(empleado.getCategoria(), empleado.getAnyosTrabajados()));
         empleadoRepository.save(empleado);
+    }
+
+    public void editarEmpleado(EmpleadoModel empleado) {
+        validarDni(empleado.getDni());
+        empleado.setSueldo(empleado.getCalcularSueldo(empleado.getCategoria(), empleado.getAnyosTrabajados()));
+        empleado.setNombre("Updated Name");
+        empleado.setDni("Updated DNI");
+        empleado.setSexo("Updated sexo");
+        empleado.setCategoria(0);
+        empleado.setAnyosTrabajados(0);
+        empleadoRepository.save(empleado);
+
     }
 
     private void validarDni(String dni) {
@@ -42,7 +54,6 @@ public class EmpleadoService {
         empleadoRepository.deleteById(id);
     }
 
-
     public List<EmpleadoModel> buscarPorCampo(String search, String filterBy) {
         if (search == null || search.isEmpty()) {
             throw new IllegalArgumentException("El parámetro de búsqueda no puede ser nulo o vacío");
@@ -54,7 +65,7 @@ public class EmpleadoService {
             case "dni":
                 return Collections.singletonList(empleadoRepository.findByDni(search));
             case "sexo":
-            	return empleadoRepository.findBySexo(search);
+                return empleadoRepository.findBySexo(search);
             case "categoria":
                 try {
                     int categoria = Integer.parseInt(search);
@@ -73,6 +84,5 @@ public class EmpleadoService {
                 return Collections.emptyList();
         }
     }
-
 
 }
