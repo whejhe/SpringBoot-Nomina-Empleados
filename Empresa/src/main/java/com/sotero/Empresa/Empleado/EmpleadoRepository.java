@@ -29,4 +29,5 @@ public interface EmpleadoRepository extends JpaRepository<EmpleadoModel, Integer
 
     void deleteById(Integer id);
 
+    //void editarEmpleado(EmpleadoModel empleado);
 }

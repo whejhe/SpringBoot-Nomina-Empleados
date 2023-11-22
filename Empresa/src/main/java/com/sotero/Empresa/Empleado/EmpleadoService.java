@@ -40,6 +40,10 @@ public class EmpleadoService {
         }
     }
 
+    public void eliminarEmpleado(EmpleadoModel empleado) {
+        empleadoRepository.delete(empleado);
+    }
+
     public List<EmpleadoModel> obtenerTodos() {
         List<EmpleadoModel> empleados = empleadoRepository.findAll();
         System.out.println("Empleados encontrados: " + empleados);
@@ -50,9 +54,9 @@ public class EmpleadoService {
         return empleadoRepository.findById(id).orElse(null);
     }
 
-    public void eliminarEmpleado(int id) {
-        empleadoRepository.deleteById(id);
-    }
+    // public void eliminarEmpleado(int id) {
+    // empleadoRepository.deleteById(id);
+    // }
 
     public List<EmpleadoModel> buscarPorCampo(String search, String filterBy) {
         if (search == null || search.isEmpty()) {
