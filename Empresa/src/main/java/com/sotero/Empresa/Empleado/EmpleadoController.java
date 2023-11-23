@@ -62,10 +62,10 @@ public class EmpleadoController {
         empleadoService.guardarEmpleado(empleado);
         return "redirect:/empleados";
     }
-
+/*
     @DeleteMapping("/deleteById")
     public String eliminarEmpleado(@PathVariable int id) {
-        empleadoService.eliminarEmpleado(empleadoService.obtenerPorId(id));
+        empleadoService.delete(empleadoService.obtenerPorId(id));
         return "redirect:/empleados";
-    }
+    }*/
 }

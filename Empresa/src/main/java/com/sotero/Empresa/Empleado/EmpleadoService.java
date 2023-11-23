@@ -3,11 +3,13 @@ package com.sotero.Empresa.Empleado;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmpleadoService {
 
+	@Autowired
     private final EmpleadoRepository empleadoRepository;
 
     public EmpleadoService(EmpleadoRepository empleadoRepository) {
@@ -40,8 +42,8 @@ public class EmpleadoService {
         }
     }
 
-    public void eliminarEmpleado(EmpleadoModel empleado) {
-        empleadoRepository.delete(empleado);
+    public void delete(int id) {
+        empleadoRepository.deleteById(id);
     }
 
     public List<EmpleadoModel> obtenerTodos() {
@@ -53,10 +55,7 @@ public class EmpleadoService {
     public EmpleadoModel obtenerPorId(int id) {
         return empleadoRepository.findById(id).orElse(null);
     }
-
-    // public void eliminarEmpleado(int id) {
-    // empleadoRepository.deleteById(id);
-    // }
+ 
 
     public List<EmpleadoModel> buscarPorCampo(String search, String filterBy) {
         if (search == null || search.isEmpty()) {

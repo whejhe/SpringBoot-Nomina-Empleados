@@ -1,6 +1,7 @@
 package com.sotero.Empresa.Empleado;
 
 import jakarta.annotation.Nonnull;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,12 +13,15 @@ public class EmpleadoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Nonnull
+    @Column(nullable = false,length = 60)
     private String nombre;
-    @Nonnull
+    @Column(nullable = false,length = 60)
     private String dni;
+    @Column(nullable = false,length = 1)
     private String sexo;
+    @Column(nullable = false)
     private int categoria;
+    @Column(nullable = false)
     private int anyosTrabajados;
     private int sueldo;
     private static final int SUELDO_BASE[] = { 50000, 70000, 90000, 110000, 130000, 150000, 170000, 190000, 210000,
