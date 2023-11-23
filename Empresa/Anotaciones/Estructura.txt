@@ -17,6 +17,9 @@ UD6-NominasEmpleados
     |   |-- static/
     |	|	|-- css/
     |	|	|	|-- estilos.css
+    |	|	|-- images/
+    |	|	|-- js/
+    |	|	|	|-- manejoDeErrores.js
     |   |-- templates/
     |	|	|-- fragments/
     |	|	|	|-- header.html

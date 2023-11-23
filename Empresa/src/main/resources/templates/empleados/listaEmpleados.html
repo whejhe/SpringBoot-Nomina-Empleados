@@ -2,77 +2,82 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/estilos.css}" />
-    <link rel="stylesheet" th:href="@{/css/tablas.css}" />
-    <title>Lista de Empleados</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/estilos.css}" />
+	<link rel="stylesheet" th:href="@{/css/tablas.css}" />
+	<script th:src="@{/js/manejoDeErrores.js}"></script>
+	<title>Lista de Empleados</title>
 </head>
 
 <body>
 
-    <div th:replace="fragments/header :: header"></div>
+	<div th:replace="fragments/header :: header"></div>
 
-    <div class="container">
-        <h2>Lista de Empleados</h2>
-        <form method="get" action="/empleados">
-		    <input type="text" name="search" placeholder="Buscar por campos" />
-		    
-		    <select name="filterBy" th:value="${filterBy}">
-		        <option value="nombre">Nombre</option>
-		        <option value="dni">DNI</option>
-		        <option value="sexo">Sexo</option>
-		        <option value="categoria">Categoría</option>
-		        <option value="anyosTrabajados">Años Trabajados</option>
-		    </select>
-		    
-		    <button type="submit">Filtrar</button>
-		    
+	<div class="container">
+		<h2>Lista de Empleados</h2>
+		<form onsubmit="return validarYEnviar()" method="get" action="/empleados">
+			<input type="text" name="search" placeholder="Buscar por campos" />
+
+			<select name="filterBy" th:value="${filterBy}">
+				<option value="nombre">Nombre</option>
+				<option value="dni">DNI</option>
+				<option value="sexo">Sexo</option>
+				<option value="categoria">Categoría</option>
+				<option value="anyosTrabajados">Años Trabajados</option>
+			</select>
+
+			<button type="submit">Filtrar</button>
+
 			<button type="button" onclick="window.location.href='/empleados/agregarEmpleado'">Añadir Empleado</button>
+
+			<button type="button" onclick="window.location.href='/empleados/actualizarLista'">Actualizar Lista</button>
 
 		</form>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>DNI</th>
-                    <th>Sexo</th>
-                    <th>Categoría</th>
-                    <th>Años Trabajados</th>
-                    <th>Sueldo</th>
-                    <th>Editar Empleado</th>
-                    <th>Eliminar Empleado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="empleado : ${empleados}">
-                    <td th:text="${empleado.id}"></td>>
-                    <td th:text="${empleado.nombre}"></td>
-                    <td th:text="${empleado.dni}"></td>
-                    <td th:text="${empleado.sexo}"></td>
-                    <td th:text="${empleado.categoria}"></td>
-                    <td th:text="${empleado.anyosTrabajados}"></td>
-                    <td th:text="${empleado.sueldo}"></td>
-                    <td>
-		                <form method="get" action="/editar">
-		                    <input type="hidden" name="empleadoId" th:value="${empleado.id}" />
-                            <button type="button" onclick="window.location.href='/empleados/editarEmpleado'">Editar</button>
-		                </form>
-		            </td>
-		            <td>
-		                <form method="get" action="/editar">
-		                    <input type="hidden" name="empleadoId" th:value="${empleado.id}" />
-                            <button type="button" onclick="window.location.href='/empleados/deleteById'">Eliminar</button>
-		                </form>
-		            </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>DNI</th>
+					<th>Sexo</th>
+					<th>Categoría</th>
+					<th>Años Trabajados</th>
+					<th>Sueldo</th>
+					<th>Editar Empleado</th>
+					<th>Eliminar Empleado</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="empleado : ${empleados}">
+					<td th:text="${empleado.id}"></td>>
+					<td th:text="${empleado.nombre}"></td>
+					<td th:text="${empleado.dni}"></td>
+					<td th:text="${empleado.sexo}"></td>
+					<td th:text="${empleado.categoria}"></td>
+					<td th:text="${empleado.anyosTrabajados}"></td>
+					<td th:text="${empleado.sueldo}"></td>
+					<td>
+						<form method="get" action="/empleados/editarEmpleado">
+							<input type="hidden" name="empleadoId" th:value="${empleado.id}" />
+							<button type="submit"
+								onclick="window.location.href='/empleados/editarEmpleado'">Editar</button>
+						</form>
+					</td>
+					<td>
+						<form method="post" action="/empleados/deleteById">
+							<input type="hidden" name="empleadoId" th:value="${empleado.id}" />
+							<button type="submit"
+								onclick="return confirm('¿Estás seguro de eliminar este empleado?')">Eliminar</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
-    <div th:replace="fragments/footer :: footer"></div>
+	<div th:replace="fragments/footer :: footer"></div>
 
 </body>
 

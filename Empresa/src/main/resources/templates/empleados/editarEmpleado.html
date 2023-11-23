@@ -15,20 +15,22 @@
 
     <div class="container">
         <h2>Editar Empleado</h2>
-        <form th:action="@{/empleados/actualizarEmpleado}" method="post" th:object="${empleado}">
+		<form th:action="@{/empleados/actualizarEmpleado}" method="post" th:object="${empleado}">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required />
-            <label for="nombre">DNI:</label>
+            <label for="dni">DNI:</label>
             <input type="text" id="dni" name="dni" th:field="*{dni}" placeholder="8 digitos y letra" required />
-            <label for="nombre">Sexo:</label>
+            <label for="sexo">Sexo:</label>
             <select name="sexo" id="sexo">
                 <option value="M" >Hombre</option>
                 <option value="F">Mujer</option>    
             </select>
-            <label for="nombre">Categoria:</label>
-            <input type="text" id="categoria" name="categoria" th:field="*{categoria}" placeholder="Entre 1 y 10" required />
-            <label for="nombre">Años Trabajados:</label>
-            <input type="text" id="anyosTrabajados" name="anyosTrabajados" th:field="*{anyosTrabajados}" required />
+            <label for="categoria">Categoria:</label>
+            <input type="number" id="categoria" name="categoria" th:field="*{categoria}" placeholder="Entre 1 y 10" required />
+            <label for="anyosTrabajados">Años Trabajados:</label>
+            <input type="number" id="anyosTrabajados" name="anyosTrabajados" th:field="*{anyosTrabajados}" required />
+            
+            <input type="hidden" name="id" th:field="*{id}" />
 			
             <div class="botonGuardar">
                 <button type="submit">Guardar Cambios</button>

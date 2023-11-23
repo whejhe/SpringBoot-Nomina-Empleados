@@ -37,14 +37,7 @@ public class EmpleadoController {
         model.addAttribute("empleado", new EmpleadoModel());
         return "empleados/agregarEmpleado";
     }
-   /* 
-    @GetMapping({ "/editarEmpleado", "/crear" })
-    public String mostrarFormularioEditar(int empleadoId,Model model) {
-    	EmpleadoModel empleado = empleadoService.obtenerPorId(empleadoId);
-        model.addAttribute("empleado", empleado);
-        return "empleados/editarEmpleado";
-    }
-*/
+   
     @PostMapping("/crear")
     public String crearEmpleado(@ModelAttribute EmpleadoModel empleado, Model model) {
         try {
@@ -55,17 +48,34 @@ public class EmpleadoController {
             return "empleados/agregarEmpleado";
         }
     }
-/*
-    @PostMapping("/actualizar")
-    public String actualizarEmpleado(@ModelAttribute EmpleadoModel empleado, Model model) {
-        try {
-            empleadoService.actualizarEmpleado(empleado);
-            return "redirect:/empleados";
-        } catch (Exception e) {
-            model.addAttribute("error", "Error al actualizar empleado: " + e.getMessage());
-            return "empleados/formularioEditar";
-        }
-    }
-*/
     
+    //Eliminar Empleados
+    @PostMapping("/deleteById")
+    public String eliminarEmpleado(@RequestParam("empleadoId") int empleadoId) {
+        empleadoService.eliminarEmpleadoPorId(empleadoId);
+        return "redirect:/empleados";
+    }
+    
+    
+    //Actualizar Lista
+    @GetMapping("/actualizarLista")
+    public String actualizarLista() {
+        empleadoService.actualizarSalarios();
+        return "redirect:/empleados";
+    }
+    
+    //Editar Empleado
+    @GetMapping("/editarEmpleado")
+    public String mostrarFormularioEdicion(@RequestParam("empleadoId") int empleadoId, Model model) {
+        EmpleadoModel empleado = empleadoService.obtenerEmpleadoPorId(empleadoId);
+        model.addAttribute("empleado", empleado);
+        return "empleados/editarEmpleado";
+    }
+    
+    //Actualizar Empleado
+    @PostMapping("/actualizarEmpleado")
+    public String actualizarEmpleado(@ModelAttribute("empleado") EmpleadoModel empleado) {
+        empleadoService.actualizarEmpleado(empleado);
+        return "redirect:/empleados";
+    }
 }
