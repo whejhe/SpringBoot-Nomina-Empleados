@@ -27,7 +27,6 @@ public interface EmpleadoRepository extends JpaRepository<EmpleadoModel, Integer
 
     List<EmpleadoModel> findByAnyosTrabajados(int anyosTrabajados);
 
-    void deleteById(Integer id);
+    //void actualizarEmpleado(String nombre, String dni, String sexo, Integer categoria, Integer anyosTrabajados);
 
-    //void editarEmpleado(EmpleadoModel empleado);
 }

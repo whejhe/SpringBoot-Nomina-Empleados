@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmpleadoService {
 
-	@Autowired
+    @Autowired
     private final EmpleadoRepository empleadoRepository;
 
     public EmpleadoService(EmpleadoRepository empleadoRepository) {
@@ -22,28 +22,12 @@ public class EmpleadoService {
         empleadoRepository.save(empleado);
     }
 
-    public void editarEmpleado(EmpleadoModel empleado) {
-        validarDni(empleado.getDni());
-        empleado.setSueldo(empleado.getCalcularSueldo(empleado.getCategoria(), empleado.getAnyosTrabajados()));
-        empleado.setNombre("Updated Name");
-        empleado.setDni("Updated DNI");
-        empleado.setSexo("Updated sexo");
-        empleado.setCategoria(0);
-        empleado.setAnyosTrabajados(0);
-        empleadoRepository.save(empleado);
-
-    }
-
     private void validarDni(String dni) {
         String regex = "\\d{8}[A-HJ-NP-TV-Z]";
 
         if (!dni.matches(regex)) {
             throw new IllegalArgumentException("El DNI no tiene el formato válido.");
         }
-    }
-
-    public void delete(int id) {
-        empleadoRepository.deleteById(id);
     }
 
     public List<EmpleadoModel> obtenerTodos() {
@@ -55,7 +39,6 @@ public class EmpleadoService {
     public EmpleadoModel obtenerPorId(int id) {
         return empleadoRepository.findById(id).orElse(null);
     }
- 
 
     public List<EmpleadoModel> buscarPorCampo(String search, String filterBy) {
         if (search == null || search.isEmpty()) {
@@ -87,5 +70,19 @@ public class EmpleadoService {
                 return Collections.emptyList();
         }
     }
+/*
+    public void actualizarEmpleado(EmpleadoModel empleado) {
+        EmpleadoModel e = empleadoRepository.findById(empleado.getId()).orElse(null);
+        if (e == null) {
+            throw new IllegalArgumentException("El empleado no existe");
+        }
+        e.setNombre(empleado.getNombre());
+        e.setDni(empleado.getDni());
+        e.setSexo(empleado.getSexo());
+        e.setCategoria(empleado.getCategoria());
+        e.setAnyosTrabajados(empleado.getAnyosTrabajados());
 
+        empleadoRepository.save(e);
+    }
+*/
 }

@@ -1,6 +1,5 @@
 package com.sotero.Empresa.Empleado;
 
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,11 +12,11 @@ public class EmpleadoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false,length = 60)
+    @Column(nullable = false, length = 60)
     private String nombre;
-    @Column(nullable = false,length = 60)
+    @Column(nullable = false, length = 60)
     private String dni;
-    @Column(nullable = false,length = 1)
+    @Column(nullable = false, length = 1)
     private String sexo;
     @Column(nullable = false)
     private int categoria;

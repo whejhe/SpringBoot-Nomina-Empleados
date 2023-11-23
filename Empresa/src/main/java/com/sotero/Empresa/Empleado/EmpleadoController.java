@@ -37,7 +37,14 @@ public class EmpleadoController {
         model.addAttribute("empleado", new EmpleadoModel());
         return "empleados/agregarEmpleado";
     }
-
+   /* 
+    @GetMapping({ "/editarEmpleado", "/crear" })
+    public String mostrarFormularioEditar(int empleadoId,Model model) {
+    	EmpleadoModel empleado = empleadoService.obtenerPorId(empleadoId);
+        model.addAttribute("empleado", empleado);
+        return "empleados/editarEmpleado";
+    }
+*/
     @PostMapping("/crear")
     public String crearEmpleado(@ModelAttribute EmpleadoModel empleado, Model model) {
         try {
@@ -48,24 +55,17 @@ public class EmpleadoController {
             return "empleados/agregarEmpleado";
         }
     }
-
-    @GetMapping("/editarById/{id}")
-    public String mostrarFormularioEditar(@PathVariable int id, Model model) {
-        EmpleadoModel empleado = empleadoService.obtenerPorId(id);
-        model.addAttribute("empleado", empleado);
-        return "empleados/agregarEmpleado";
-    }
-
-    @PostMapping("/editarById/{id}")
-    public String editarEmpleado(@PathVariable int id, @ModelAttribute EmpleadoModel empleado) {
-        empleado.setId(id);
-        empleadoService.guardarEmpleado(empleado);
-        return "redirect:/empleados";
-    }
 /*
-    @DeleteMapping("/deleteById")
-    public String eliminarEmpleado(@PathVariable int id) {
-        empleadoService.delete(empleadoService.obtenerPorId(id));
-        return "redirect:/empleados";
-    }*/
+    @PostMapping("/actualizar")
+    public String actualizarEmpleado(@ModelAttribute EmpleadoModel empleado, Model model) {
+        try {
+            empleadoService.actualizarEmpleado(empleado);
+            return "redirect:/empleados";
+        } catch (Exception e) {
+            model.addAttribute("error", "Error al actualizar empleado: " + e.getMessage());
+            return "empleados/formularioEditar";
+        }
+    }
+*/
+    
 }

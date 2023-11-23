@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/estilos.css}" />
-    <link rel="stylesheet" th:href="@{/css/tablas.css}" />
-    <title>Lista de Empleados</title>
+    <link rel="stylesheet" th:href="@{/css/formulario.css}" />
+    <title>Agregar Empleado</title>
 </head>
 
 <body>
@@ -14,61 +14,27 @@
     <div th:replace="fragments/header :: header"></div>
 
     <div class="container">
-        <h2>Lista de Empleados</h2>
-        <form method="get" action="/empleados">
-		    <input type="text" name="search" placeholder="Buscar por campos" />
-		    
-		    <select name="filterBy" th:value="${filterBy}">
-		        <option value="nombre">Nombre</option>
-		        <option value="dni">DNI</option>
-		        <option value="sexo">Sexo</option>
-		        <option value="categoria">Categoría</option>
-		        <option value="anyosTrabajados">Años Trabajados</option>
-		    </select>
-		    
-		    <button type="submit">Filtrar</button>
-		    
-		    <button>Añadir Empleado</button>
-		</form>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>DNI</th>
-                    <th>Sexo</th>
-                    <th>Categoría</th>
-                    <th>Años Trabajados</th>
-                    <th>Sueldo</th>
-                    <th>Editar Empleado</th>
-                    <th>Eliminar Empleado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="empleado : ${empleados}">
-                    <td th:text="${empleado.id}"></td>>
-                    <td th:text="${empleado.nombre}"></td>
-                    <td th:text="${empleado.dni}"></td>
-                    <td th:text="${empleado.sexo}"></td>
-                    <td th:text="${empleado.categoria}"></td>
-                    <td th:text="${empleado.anyosTrabajados}"></td>
-                    <td th:text="${empleado.sueldo}"></td>
-                    <td>
-		                <form method="get" action="/editar/{id}">
-		                    <input type="hidden" name="empleadoId" th:value="${empleado.id}" />
-		                    <button type="submit">Editar</button>
-		                </form>
-		            </td>
-		            <td>
-		                <form method="get" action="/deleteById">
-		                    <input type="hidden" name="empleadoId" th:value="${empleado.id}" />
-		                    <button type="submit">Eliminar</button>
-		                </form>
-		            </td>
-                </tr>
-            </tbody>
-        </table>
+        <h2>Editar Empleado</h2>
+        <form th:action="@{/empleados/actualizarEmpleado}" method="post" th:object="${empleado}">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required />
+            <label for="nombre">DNI:</label>
+            <input type="text" id="dni" name="dni" th:field="*{dni}" placeholder="8 digitos y letra" required />
+            <label for="nombre">Sexo:</label>
+            <select name="sexo" id="sexo">
+                <option value="M" >Hombre</option>
+                <option value="F">Mujer</option>    
+            </select>
+            <label for="nombre">Categoria:</label>
+            <input type="text" id="categoria" name="categoria" th:field="*{categoria}" placeholder="Entre 1 y 10" required />
+            <label for="nombre">Años Trabajados:</label>
+            <input type="text" id="anyosTrabajados" name="anyosTrabajados" th:field="*{anyosTrabajados}" required />
+			
+            <div class="botonGuardar">
+                <button type="submit">Guardar Cambios</button>
+            </div>
+            
+        </form>
     </div>
 
     <div th:replace="fragments/footer :: footer"></div>

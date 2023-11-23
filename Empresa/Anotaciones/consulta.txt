@@ -1,56 +1,58 @@
 EmpleadoRepository
-void editarById(Integer id, EmpleadoModel empleado);
 
-
-EmpleadoService
- public void editarEmpleado(EmpleadoModel empleado) {
-        // añade logica para editar el empleado
-        empleado.setNombre("Updated Name");
-        empleado.setDni("Updated DNI");
-        empleado.setSexo("Updated sexo");
-        empleado.setCategoria(0);
-        empleado.setAnyosTrabajados(0);
-        empleadoRepository.save(empleado);
-
-    }
+void actualizarEmpleado(String nombre, String dni, String sexo, Integer categoria, Integer anyosTrabajados);
 
 
 EmpleadoModel
-public EmpleadoModel(String dni, String sexo, int categoria, int anyosTrabajados, int sueldo) {
-        this.dni = dni;
-        this.sexo = sexo;
-        this.categoria = categoria;
-        if (this.categoria <= 0) {
-            categoria = 1;
-            this.categoria = categoria;
-        }
-        this.anyosTrabajados = anyosTrabajados;
-        if (this.anyosTrabajados < 0) {
-            anyosTrabajados = 0;
-            this.anyosTrabajados = anyosTrabajados;
-        }
-        this.sueldo = getCalcularSueldo(categoria, anyosTrabajados);
-    }
+
+@Entity
+public class EmpleadoModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(nullable = false,length = 60)
+    private String nombre;
+    @Column(nullable = false,length = 60)
+    private String dni;
+    @Column(nullable = false,length = 1)
+    private String sexo;
+    @Column(nullable = false)
+    private int categoria;
+    @Column(nullable = false)
+    private int anyosTrabajados;
+    private int sueldo;
 
 
 EmpleadoController
-@GetMapping("/editarById/{id}")
-    public String mostrarFormularioEditar(@PathVariable int id, Model model) {
-        EmpleadoModel empleado = empleadoService.obtenerPorId(id);
+
+@PostMapping("/actualizar")
+    public String actualizarEmpleado(@ModelAttribute EmpleadoModel empleado, Model model) {
+        try {
+            empleadoService.actualizarEmpleado(empleado);
+            return "redirect:/empleados";
+        } catch (Exception e) {
+            model.addAttribute("error", "Error al actualizar empleado: " + e.getMessage());
+            return "empleados/formularioEditar";
+        }
+    }
+
+ @GetMapping({ "/editarEmpleado", "/crear" })
+    public String mostrarFormularioEditar(int empleadoId,Model model) {
+    	EmpleadoModel empleado = empleadoService.obtenerPorId(empleadoId);
         model.addAttribute("empleado", empleado);
-        return "empleados/agregarEmpleado";
+        return "empleados/editarEmpleado";
     }
 
-    @PostMapping("/editarById/{id}")
-    public String editarEmpleado(@PathVariable int id, @ModelAttribute EmpleadoModel empleado) {
-        empleado.setId(id);
-        empleadoService.guardarEmpleado(empleado);
-        return "redirect:/empleados";
+EmpleadoService
+
+public void actualizarEmpleado(EmpleadoModel empleado) {
+        EmpleadoModel e = new EmpleadoModel();
+        e.setNombre(e.getNombre());
+        e.setDni(e.getDni());
+        e.setSexo(e.getSexo());
+        e.setCategoria(e.getCategoria());
+        e.setAnyosTrabajados(e.getAnyosTrabajados());
+        
+        empleadoRepository.save(e);
     }
-
-
-listaEmpleado.html
-<form method="get" action="/editar">
-		                    <input type="hidden" name="empleadoId" th:value="${empleado.id}" />
-                            <button type="button" onclick="window.location.href='/empleados/editarEmpleado'">Editar</button>
-		                </form>

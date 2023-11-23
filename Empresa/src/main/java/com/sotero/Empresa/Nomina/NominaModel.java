@@ -2,7 +2,6 @@ package com.sotero.Empresa.Nomina;
 
 import com.sotero.Empresa.Empleado.EmpleadoModel;
 
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,9 +19,9 @@ public class NominaModel {
 	@ManyToOne
 	@JoinColumn(name = "id")
 	private EmpleadoModel empleado;
-	
+
 	public NominaModel() {
-		
+
 	}
 
 	public int getIdNomina() {

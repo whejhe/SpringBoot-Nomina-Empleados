@@ -20,14 +20,14 @@
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required />
             <label for="nombre">DNI:</label>
-            <input type="text" id="dni" name="dni" th:field="*{dni}" required />
+            <input type="text" id="dni" name="dni" th:field="*{dni}" placeholder="8 digitos y letra" required />
             <label for="nombre">Sexo:</label>
             <select name="sexo" id="sexo">
                 <option value="M" >Hombre</option>
                 <option value="F">Mujer</option>    
             </select>
             <label for="nombre">Categoria:</label>
-            <input type="text" id="categoria" name="categoria" th:field="*{categoria}" required />
+            <input type="text" id="categoria" name="categoria" th:field="*{categoria}" placeholder="Entre 1 y 10" required />
             <label for="nombre">Años Trabajados:</label>
             <input type="text" id="anyosTrabajados" name="anyosTrabajados" th:field="*{anyosTrabajados}" required />
 			
