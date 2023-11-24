@@ -77,6 +77,11 @@ public class EmpleadoModel {
     }
 
     public void setNombre(String nombre) {
+        if (nombre.length() < 3 || nombre.length() > 60) {
+            throw new IllegalArgumentException("El nombre " + nombre + " no es valido");
+        } else if (nombre.isBlank()) {
+            throw new IllegalArgumentException("El campo nombre no puede estar vacío");
+        }
         this.nombre = nombre;
     }
 
@@ -85,6 +90,9 @@ public class EmpleadoModel {
     }
 
     public void setDni(String dni) {
+        if (dni.length() < 9) {
+            throw new IllegalArgumentException("El DNI no tiene un formato válido");
+        }
         this.dni = dni;
     }
 
@@ -93,6 +101,7 @@ public class EmpleadoModel {
     }
 
     public void setSexo(String sexo) {
+       
         this.sexo = sexo;
     }
 
@@ -101,6 +110,9 @@ public class EmpleadoModel {
     }
 
     public void setCategoria(int categoria) {
+        if (categoria < 1 || categoria > 10) {
+            throw new IllegalArgumentException("La categoria debe estar entre 1 y 10");
+        }
         this.categoria = categoria;
     }
 
@@ -109,6 +121,9 @@ public class EmpleadoModel {
     }
 
     public void setAnyosTrabajados(int anyosTrabajados) {
+        if (anyosTrabajados < 0 || anyosTrabajados > 60) {
+            throw new IllegalArgumentException("Los años no pueden ser negativos ni superiores los 60");
+        }
         this.anyosTrabajados = anyosTrabajados;
     }
 }

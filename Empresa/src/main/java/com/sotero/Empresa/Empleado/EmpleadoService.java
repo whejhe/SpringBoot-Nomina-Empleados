@@ -27,7 +27,6 @@ public class EmpleadoService {
 
 	private void validarDni(String dni) {
 		String regex = "\\d{8}[A-HJ-NP-TV-Z]";
-
 		if (!dni.matches(regex)) {
 			throw new IllegalArgumentException("El DNI no tiene el formato válido.");
 		}
